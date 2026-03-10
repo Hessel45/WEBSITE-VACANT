@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>VACANT APPAREL | Men Catalog</title>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -13,16 +13,23 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
         body {
             background: #ffffff;
             color: #111111;
             font-family: 'Space Grotesk', sans-serif;
-            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         h1, h2, h3, h4 {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
+            letter-spacing: -0.02em;
         }
 
         /* PREMIUM NAVBAR */
@@ -193,6 +200,8 @@
             transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 999;
             box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .mobile-menu.active {
@@ -334,6 +343,7 @@
             z-index: 10;
             max-width: 800px;
             pointer-events: none;
+            width: 90%;
         }
 
         .slider-content .label {
@@ -532,6 +542,8 @@
             letter-spacing: -2px;
             line-height: 1;
             margin-bottom: 20px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .catalog-header p {
@@ -539,6 +551,9 @@
             font-size: 18px;
             max-width: 600px;
             margin: 0 auto;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            line-height: 1.6;
         }
 
         /* SEARCH RESULTS INFO */
@@ -551,6 +566,8 @@
             border-radius: 50px;
             font-size: 15px;
             color: #666666;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .search-info.active {
@@ -739,6 +756,8 @@
             margin-bottom: 10px;
             text-transform: uppercase;
             font-family: 'Syne', sans-serif;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .product-price {
@@ -799,26 +818,37 @@
             z-index: 2;
         }
 
-        /* NEWSLETTER */
+        /* NEWSLETTER - DIPERBAIKI UNTUK MOBILE */
         .newsletter-block {
             background: #000000;
-            padding: 100px;
+            padding: 80px 40px;
             text-align: center;
             color: #ffffff;
-            margin: 120px 5% 60px;
+            margin: 100px auto 60px;
+            max-width: 1200px;
+            width: 90%;
         }
 
         .newsletter-block h3 {
-            font-size: 52px;
+            font-size: clamp(28px, 8vw, 48px);
             font-weight: 800;
             text-transform: uppercase;
             margin-bottom: 20px;
+            letter-spacing: -1px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .newsletter-block p {
             color: #cccccc;
-            margin-bottom: 50px;
-            font-size: 18px;
+            margin-bottom: 40px;
+            font-size: clamp(15px, 4vw, 18px);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            line-height: 1.6;
         }
 
         .newsletter-form {
@@ -830,12 +860,13 @@
 
         .newsletter-form input {
             flex: 1;
-            padding: 20px 25px;
+            padding: 18px 25px;
             background: transparent;
             border: 2px solid #ffffff;
             color: #ffffff;
             font-size: 16px;
             outline: none;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .newsletter-form input::placeholder {
@@ -843,7 +874,7 @@
         }
 
         .newsletter-form button {
-            padding: 20px 50px;
+            padding: 18px 45px;
             background: #ffffff;
             color: #000000;
             border: none;
@@ -853,7 +884,9 @@
             cursor: pointer;
             transition: 0.3s;
             border: 2px solid #ffffff;
-            font-size: 15px;
+            font-size: 14px;
+            font-family: 'Syne', sans-serif;
+            white-space: nowrap;
         }
 
         .newsletter-form button:hover {
@@ -891,6 +924,8 @@
             line-height: 1.8;
             font-size: 15px;
             margin-bottom: 25px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .footer-col a {
@@ -925,7 +960,6 @@
             font-size: 20px;
             transition: all 0.3s;
             border: 1px solid #eaeaea;
-            transform: none;
         }
 
         .social-wrap a:hover {
@@ -959,9 +993,18 @@
             color: #000000;
         }
 
-        /* ===== RESPONSIVE FOR MOBILE ===== */
-        @media (max-width: 768px) {
-            /* Navbar */
+        /* ===== RESPONSIVE FOR MOBILE - DIPERBAIKI ===== */
+        @media (max-width: 1200px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .search-box.active {
+                width: 220px;
+            }
+        }
+
+        @media (max-width: 1024px) {
             .nav-links {
                 display: none;
             }
@@ -974,34 +1017,52 @@
                 display: block;
             }
             
+            .catalog-header h1 {
+                font-size: 60px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            html, body {
+                overflow-x: hidden;
+                width: 100%;
+            }
+            
             .nav-icons {
                 display: none;
             }
             
-            /* Desktop search disembunyikan di mobile */
             .search-box,
             .search-icon {
                 display: none;
             }
             
-            /* Hero slider - FULL SCREEN seperti desktop */
+            /* Hero slider - FULL SCREEN */
             .hero {
                 height: 100vh;
                 min-height: 600px;
+                width: 100vw;
             }
             
             .slider-content {
                 bottom: 120px;
                 left: 5%;
                 right: 5%;
+                width: 90%;
             }
             
             .slider-content h1 {
                 font-size: 48px;
+                letter-spacing: -2px;
             }
             
             .slider-content p {
                 font-size: 16px;
+                margin-bottom: 25px;
             }
             
             .slider-btn {
@@ -1013,6 +1074,7 @@
                 bottom: 30px;
                 left: 5%;
                 right: 5%;
+                width: 90%;
             }
             
             .slider-arrow {
@@ -1023,6 +1085,22 @@
             
             .progress-item {
                 width: 60px;
+            }
+            
+            /* Catalog header */
+            .catalog-header {
+                margin-top: 80px;
+                margin-bottom: 40px;
+            }
+            
+            .catalog-header h1 {
+                font-size: 42px;
+                line-height: 1.1;
+            }
+            
+            .catalog-header p {
+                font-size: 16px;
+                padding: 0 10px;
             }
             
             /* Filter bar */
@@ -1067,6 +1145,7 @@
                 right: auto;
                 min-width: 200px;
                 max-width: 280px;
+                z-index: 200;
             }
             
             .sort-option {
@@ -1082,11 +1161,12 @@
             }
             
             .product-title {
-                font-size: 14px;
+                font-size: 15px;
+                line-height: 1.3;
             }
             
             .product-price {
-                font-size: 16px;
+                font-size: 17px;
                 margin-bottom: 12px;
             }
             
@@ -1095,37 +1175,37 @@
                 font-size: 12px;
             }
             
-            /* Catalog header */
-            .catalog-header {
-                margin-top: 80px;
-                margin-bottom: 40px;
-            }
-            
-            .catalog-header h1 {
-                font-size: 42px;
-            }
-            
-            .catalog-header p {
-                font-size: 16px;
-            }
-            
             /* Newsletter */
             .newsletter-block {
                 padding: 50px 25px;
-                margin: 80px 5% 40px;
+                margin: 70px auto 50px;
+                width: 90%;
             }
             
             .newsletter-block h3 {
                 font-size: 32px;
+                margin-bottom: 15px;
+            }
+            
+            .newsletter-block p {
+                font-size: 16px;
+                margin-bottom: 30px;
             }
             
             .newsletter-form {
                 flex-direction: column;
+                gap: 12px;
             }
             
             .newsletter-form input,
             .newsletter-form button {
                 width: 100%;
+                padding: 16px 20px;
+            }
+            
+            .newsletter-form button {
+                font-size: 14px;
+                white-space: normal;
             }
             
             /* Footer */
@@ -1144,21 +1224,95 @@
                 display: flex;
                 gap: 15px;
                 justify-content: center;
+                flex-wrap: wrap;
             }
             
             .payment-icons i {
-                margin-left: 0;
-                font-size: 28px;
+                font-size: 24px;
+            }
+            
+            .footer-col p {
+                font-size: 14px;
             }
         }
         
         @media (max-width: 480px) {
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
-            
             .slider-content h1 {
                 font-size: 42px;
+            }
+            
+            .slider-content p {
+                font-size: 15px;
+            }
+            
+            .catalog-header h1 {
+                font-size: 36px;
+            }
+            
+            .catalog-header p {
+                font-size: 15px;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .product-title {
+                font-size: 16px;
+            }
+            
+            .product-price {
+                font-size: 18px;
+            }
+            
+            .newsletter-block {
+                padding: 40px 20px;
+            }
+            
+            .newsletter-block h3 {
+                font-size: 28px;
+            }
+            
+            .newsletter-block p {
+                font-size: 15px;
+            }
+            
+            .footer-col h4 {
+                font-size: 18px;
+            }
+            
+            .footer-col p,
+            .footer-col a {
+                font-size: 14px;
+            }
+            
+            .social-wrap {
+                gap: 15px;
+            }
+            
+            .social-wrap a {
+                width: 42px;
+                height: 42px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .slider-content h1 {
+                font-size: 36px;
+            }
+            
+            .catalog-header h1 {
+                font-size: 32px;
+            }
+            
+            .newsletter-block h3 {
+                font-size: 24px;
+            }
+            
+            .newsletter-block p {
+                font-size: 14px;
             }
         }
     </style>
@@ -1569,6 +1723,13 @@
             mobileMenu.classList.toggle('active');
             overlay.classList.toggle('active');
             burger.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         }
 
         // ===== SEARCH FUNCTIONALITY =====
