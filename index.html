@@ -572,7 +572,7 @@
             pointer-events: auto;
         }
 
-        /* SECTION TITLE - disesuaikan dengan CODE2 */
+        /* SECTION TITLE */
         .section-header {
             text-align: center;
             margin: 100px 0 60px;
@@ -621,22 +621,26 @@
             margin: 0 auto;
         }
 
-        /* STORY */
+        /* STORY - DIPERBAIKI */
         .story-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 100px;
+            gap: 80px;
             margin-bottom: 120px;
             align-items: center;
         }
 
+        .story-text {
+            width: 100%;
+        }
+
         .story-text .tag {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 4px;
             color: #999999;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             display: block;
         }
 
@@ -644,21 +648,21 @@
             font-size: 52px;
             font-weight: 800;
             line-height: 1.1;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             text-transform: uppercase;
         }
 
         .story-text p {
             color: #555555;
-            line-height: 1.8;
-            margin-bottom: 25px;
-            font-size: 17px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 16px;
         }
 
         .story-highlight {
             display: flex;
-            gap: 60px;
-            margin-top: 50px;
+            gap: 50px;
+            margin-top: 40px;
         }
 
         .highlight-item {
@@ -666,24 +670,24 @@
         }
 
         .highlight-item .number {
-            font-size: 56px;
+            font-size: 48px;
             font-weight: 800;
             color: #000000;
             display: block;
             line-height: 1;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
 
         .highlight-item .text {
-            font-size: 14px;
+            font-size: 13px;
             color: #888888;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
         }
 
         .story-image {
             position: relative;
-            height: 650px;
+            height: 600px;
             overflow: hidden;
         }
 
@@ -701,8 +705,8 @@
         .story-image::after {
             content: '';
             position: absolute;
-            top: 25px;
-            left: 25px;
+            top: 20px;
+            left: 20px;
             width: 100%;
             height: 100%;
             border: 2px solid #000000;
@@ -725,49 +729,49 @@
         .vm-block {
             background: #ffffff;
             border: 2px solid #000000;
-            padding: 60px 50px;
+            padding: 50px 40px;
             transition: all 0.4s;
             position: relative;
         }
 
         .vm-block:hover {
-            transform: translateY(-15px);
-            box-shadow: 25px 25px 0 rgba(0,0,0,0.1);
+            transform: translateY(-10px);
+            box-shadow: 20px 20px 0 rgba(0,0,0,0.1);
         }
 
         .vm-icon {
-            margin-bottom: 35px;
+            margin-bottom: 30px;
         }
 
         .vm-icon i {
-            font-size: 56px;
+            font-size: 48px;
             color: #000000;
         }
 
         .vm-block h3 {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 800;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             text-transform: uppercase;
         }
 
         .vm-block p {
             color: #555555;
-            line-height: 1.8;
-            font-size: 17px;
+            line-height: 1.7;
+            font-size: 16px;
         }
 
         /* VALUES */
         .values-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
+            gap: 25px;
             margin-bottom: 120px;
         }
 
         .value-card {
             background: #f8f8f8;
-            padding: 50px 35px;
+            padding: 40px 30px;
             transition: all 0.4s;
             position: relative;
             overflow: hidden;
@@ -804,26 +808,26 @@
         }
 
         .value-icon {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .value-icon i {
-            font-size: 42px;
+            font-size: 36px;
             color: #000000;
             transition: 0.4s;
         }
 
         .value-card h4 {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             transition: 0.4s;
         }
 
         .value-card p {
             color: #666666;
-            font-size: 15px;
-            line-height: 1.7;
+            font-size: 14px;
+            line-height: 1.6;
             transition: 0.4s;
         }
 
@@ -981,26 +985,32 @@
             background: #000000;
         }
 
-        /* NEWSLETTER - disesuaikan dengan CODE2 */
+        /* NEWSLETTER - DIPERBAIKI */
         .newsletter-block {
             background: #000000;
-            padding: 100px;
+            padding: 80px 40px;
             text-align: center;
             color: #ffffff;
-            margin: 120px 5% 60px;
+            margin: 100px auto 80px;
+            max-width: 1200px;
+            width: 90%;
         }
 
         .newsletter-block h3 {
-            font-size: 52px;
+            font-size: 48px;
             font-weight: 800;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
         }
 
         .newsletter-block p {
             color: #cccccc;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             font-size: 18px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .newsletter-form {
@@ -1012,12 +1022,13 @@
 
         .newsletter-form input {
             flex: 1;
-            padding: 20px 25px;
+            padding: 18px 25px;
             background: transparent;
             border: 2px solid #ffffff;
             color: #ffffff;
             font-size: 16px;
             outline: none;
+            border-radius: 0;
         }
 
         .newsletter-form input::placeholder {
@@ -1025,7 +1036,7 @@
         }
 
         .newsletter-form button {
-            padding: 20px 50px;
+            padding: 18px 45px;
             background: #ffffff;
             color: #000000;
             border: none;
@@ -1035,7 +1046,8 @@
             cursor: pointer;
             transition: 0.3s;
             border: 2px solid #ffffff;
-            font-size: 15px;
+            font-size: 14px;
+            white-space: nowrap;
         }
 
         .newsletter-form button:hover {
@@ -1141,7 +1153,7 @@
             color: #000000;
         }
 
-        /* RESPONSIVE - disesuaikan dengan CODE2 */
+        /* RESPONSIVE */
         @media (max-width: 1200px) {
             .slider-content h1 {
                 font-size: 80px;
@@ -1149,6 +1161,14 @@
             
             .values-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .story-container {
+                gap: 60px;
+            }
+            
+            .story-text h3 {
+                font-size: 46px;
             }
         }
 
@@ -1184,6 +1204,18 @@
             
             .search-box.active {
                 width: 220px;
+            }
+            
+            .story-container {
+                gap: 50px;
+            }
+            
+            .story-text h3 {
+                font-size: 42px;
+            }
+            
+            .story-image {
+                height: 500px;
             }
         }
 
@@ -1258,7 +1290,7 @@
             .story-container,
             .vm-showcase {
                 grid-template-columns: 1fr;
-                gap: 60px;
+                gap: 50px;
             }
             
             .story-text h3 {
@@ -1266,8 +1298,17 @@
             }
             
             .story-image {
-                height: 450px;
+                height: 400px;
                 width: 100%;
+            }
+            
+            .story-highlight {
+                gap: 30px;
+                flex-wrap: wrap;
+            }
+            
+            .highlight-item .number {
+                font-size: 42px;
             }
             
             .values-grid,
@@ -1277,6 +1318,10 @@
             
             .values-grid {
                 gap: 20px;
+            }
+            
+            .vm-block {
+                padding: 40px 30px;
             }
             
             .section-header h2::before,
@@ -1293,22 +1338,28 @@
             }
             
             .newsletter-block {
-                padding: 50px 25px;
-                margin: 80px 5% 40px;
+                padding: 60px 30px;
+                margin: 80px auto 60px;
             }
             
             .newsletter-block h3 {
-                font-size: 32px;
+                font-size: 36px;
+            }
+            
+            .newsletter-block p {
+                font-size: 16px;
+                margin-bottom: 30px;
             }
             
             .newsletter-form {
                 flex-direction: column;
-                width: 100%;
+                gap: 15px;
             }
             
             .newsletter-form input,
             .newsletter-form button {
                 width: 100%;
+                padding: 16px 25px;
             }
             
             .footer-bottom {
@@ -1340,16 +1391,29 @@
                 height: 350px;
             }
             
+            .story-text h3 {
+                font-size: 32px;
+            }
+            
             .vm-block {
-                padding: 40px 30px;
+                padding: 30px 25px;
             }
             
             .value-card {
-                padding: 40px 25px;
+                padding: 35px 25px;
             }
             
             .insta-slide {
                 flex: 0 0 100%;
+            }
+            
+            .newsletter-block h3 {
+                font-size: 28px;
+            }
+            
+            .newsletter-form input,
+            .newsletter-form button {
+                padding: 14px 20px;
             }
         }
 
@@ -1360,6 +1424,14 @@
             
             .story-image {
                 height: 300px;
+            }
+            
+            .story-highlight {
+                gap: 20px;
+            }
+            
+            .highlight-item .number {
+                font-size: 36px;
             }
         }
     </style>
@@ -1522,7 +1594,7 @@
             </div>
         </div>
 
-        <!-- CORE VALUES - Menggunakan section-header seperti CODE2 -->
+        <!-- CORE VALUES -->
         <div class="section-header text-container">
             <h2>VALUES</h2>
             <p>What drives us every day</p>
@@ -1602,7 +1674,7 @@
             <div class="insta-dots" id="instaDots"></div>
         </div>
 
-        <!-- NEWSLETTER - dengan margin dan padding seperti CODE2 -->
+        <!-- NEWSLETTER - DIPERBAIKI -->
         <div class="newsletter-block text-container">
             <h3>JOIN THE MOVEMENT</h3>
             <p>Subscribe for exclusive drops, early access, and special offers</p>
