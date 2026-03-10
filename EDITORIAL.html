@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>VACANT · EDITORIAL</title>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -13,11 +13,16 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
         body {
             background: #ffffff;
             color: #111111;
             font-family: 'Space Grotesk', sans-serif;
-            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -196,6 +201,8 @@
             transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 999;
             box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .mobile-menu.active {
@@ -327,7 +334,7 @@
             display: none !important;
         }
 
-        /* FULL HERO SECTION */
+        /* FULL HERO SECTION - FIXED UNTUK MOBILE */
         .editorial-hero {
             height: 100vh;
             width: 100%;
@@ -341,8 +348,6 @@
             height: 100%;
             object-fit: cover;
             filter: brightness(0.5);
-            transform: scale(1);
-            transition: transform 8s ease;
         }
 
         .hero-content {
@@ -448,9 +453,9 @@
             }
         }
 
-        /* FEATURED STORY - DIPERBAIKI */
+        /* FEATURED STORY - DIPERBAIKI UNTUK MOBILE */
         .featured-story {
-            padding: 100px 5%;
+            padding: 80px 5%;
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
@@ -487,6 +492,11 @@
             height: 100%;
             border: 2px solid #000000;
             z-index: -1;
+            pointer-events: none;
+        }
+
+        .featured-content {
+            width: 100%;
         }
 
         .featured-content .tag {
@@ -506,6 +516,8 @@
             margin-bottom: 25px;
             text-transform: uppercase;
             letter-spacing: -1px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .featured-content p {
@@ -513,6 +525,8 @@
             line-height: 1.7;
             margin-bottom: 30px;
             font-size: 17px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .featured-meta {
@@ -572,7 +586,7 @@
             transform: translateX(8px);
         }
 
-        /* SECTION HEADER - SAMA DENGAN CODE2 */
+        /* SECTION HEADER */
         .section-header {
             text-align: center;
             margin: 100px 0 60px;
@@ -587,6 +601,8 @@
             margin-bottom: 15px;
             position: relative;
             display: inline-block;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .section-header h2::before,
@@ -613,6 +629,8 @@
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         /* EDITORIAL GRID */
@@ -682,6 +700,8 @@
             text-transform: uppercase;
             line-height: 1.2;
             letter-spacing: -0.5px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .card-content p {
@@ -689,6 +709,8 @@
             font-size: 15px;
             line-height: 1.6;
             margin-bottom: 20px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .card-meta {
@@ -712,7 +734,7 @@
         .lookbook-container {
             position: relative;
             width: 100%;
-            padding: 0 20px;
+            padding: 0 5%;
             margin: 40px 0 30px;
         }
 
@@ -910,31 +932,37 @@
             opacity: 1;
         }
 
-        /* NEWSLETTER - SAMA DENGAN CODE2 */
+        /* NEWSLETTER */
         .newsletter-block {
             background: #000000;
-            padding: clamp(40px, 8vw, 100px);
+            padding: 80px 40px;
             text-align: center;
             color: #ffffff;
-            margin: 60px 5% 60px;
+            margin: 60px auto 60px;
+            max-width: 1200px;
+            width: 90%;
         }
 
         .newsletter-block h3 {
-            font-size: clamp(32px, 8vw, 52px);
+            font-size: clamp(28px, 8vw, 48px);
             font-weight: 800;
             text-transform: uppercase;
             margin-bottom: 20px;
             letter-spacing: -1px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .newsletter-block p {
             color: #cccccc;
-            margin-bottom: 50px;
-            font-size: clamp(16px, 4vw, 18px);
+            margin-bottom: 40px;
+            font-size: clamp(15px, 4vw, 18px);
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.6;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .newsletter-form {
@@ -946,7 +974,7 @@
 
         .newsletter-form input {
             flex: 1;
-            padding: 20px 25px;
+            padding: 18px 25px;
             background: transparent;
             border: 2px solid #ffffff;
             color: #ffffff;
@@ -960,7 +988,7 @@
         }
 
         .newsletter-form button {
-            padding: 20px 50px;
+            padding: 18px 40px;
             background: #ffffff;
             color: #000000;
             border: none;
@@ -970,7 +998,7 @@
             cursor: pointer;
             transition: 0.3s;
             border: 2px solid #ffffff;
-            font-size: 15px;
+            font-size: 14px;
             font-family: 'Syne', sans-serif;
             white-space: nowrap;
         }
@@ -980,7 +1008,7 @@
             color: #ffffff;
         }
 
-        /* FOOTER - SAMA DENGAN CODE2 */
+        /* FOOTER */
         footer {
             background: #f8f8f8;
             padding: 80px 5% 40px;
@@ -1044,7 +1072,6 @@
             font-size: 20px;
             transition: all 0.3s;
             border: 1px solid #eaeaea;
-            transform: none;
         }
 
         .social-wrap a:hover {
@@ -1078,7 +1105,7 @@
             color: #000000;
         }
 
-        /* RESPONSIVE */
+        /* RESPONSIVE - DIPERBAIKI UNTUK MOBILE */
         @media (max-width: 1200px) {
             .featured-story {
                 gap: 40px;
@@ -1142,6 +1169,11 @@
         }
 
         @media (max-width: 768px) {
+            html, body {
+                overflow-x: hidden;
+                width: 100%;
+            }
+            
             .nav-icons {
                 display: none;
             }
@@ -1153,6 +1185,17 @@
             
             .hero-content {
                 padding: 0 20px;
+                width: 100%;
+            }
+            
+            .hero-content h1 {
+                font-size: 48px;
+                margin-bottom: 20px;
+            }
+            
+            .hero-content p {
+                font-size: 16px;
+                margin-bottom: 25px;
             }
             
             .hero-btn {
@@ -1160,6 +1203,7 @@
                 font-size: 14px;
             }
             
+            /* FEATURED STORY - FIX UNTUK MOBILE */
             .featured-story {
                 grid-template-columns: 1fr;
                 gap: 40px;
@@ -1167,7 +1211,8 @@
             }
             
             .featured-image {
-                height: 400px;
+                height: 350px;
+                width: 100%;
             }
             
             .featured-image::after {
@@ -1175,39 +1220,131 @@
                 left: 15px;
             }
             
+            .featured-content {
+                padding: 0;
+                width: 100%;
+            }
+            
             .featured-content h2 {
-                font-size: 36px;
+                font-size: 32px;
+                margin-bottom: 20px;
+            }
+            
+            .featured-content p {
+                font-size: 15px;
+                margin-bottom: 25px;
             }
             
             .featured-meta {
                 flex-direction: column;
                 gap: 20px;
+                margin: 30px 0 25px;
+                padding: 25px 0;
+            }
+            
+            .meta-item {
+                width: 100%;
+            }
+            
+            .meta-item .value {
+                font-size: 15px;
+            }
+            
+            .read-more {
+                padding: 16px 35px;
+                width: 100%;
+                justify-content: center;
             }
             
             .editorial-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 25px;
+                padding: 0 5% 60px;
+            }
+            
+            .editorial-card {
+                width: 100%;
+            }
+            
+            .card-content {
+                padding: 25px 20px;
+            }
+            
+            .card-content h3 {
+                font-size: 22px;
+            }
+            
+            .card-content p {
+                font-size: 14px;
             }
             
             .lookbook-slide {
                 flex: 0 0 100%;
             }
             
+            .lookbook-container {
+                padding: 0 5%;
+            }
+            
+            .lookbook-overlay {
+                padding: 20px;
+            }
+            
+            .lookbook-overlay h4 {
+                font-size: 20px;
+            }
+            
+            .lookbook-overlay p {
+                font-size: 13px;
+            }
+            
             .bts-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                padding: 0 5% 60px;
+            }
+            
+            .section-header {
+                margin: 70px 0 40px;
+            }
+            
+            .section-header h2 {
+                font-size: 32px;
+            }
+            
+            .section-header p {
+                font-size: 16px;
             }
             
             .newsletter-block {
-                padding: 50px 30px;
+                padding: 50px 25px;
+                margin: 50px auto;
+                width: 90%;
+            }
+            
+            .newsletter-block h3 {
+                font-size: 28px;
+                margin-bottom: 15px;
+            }
+            
+            .newsletter-block p {
+                font-size: 15px;
+                margin-bottom: 30px;
             }
             
             .newsletter-form {
                 flex-direction: column;
+                gap: 12px;
+            }
+            
+            .newsletter-form input,
+            .newsletter-form button {
+                width: 100%;
+                padding: 16px 20px;
             }
             
             .newsletter-form button {
-                padding: 20px 30px;
-                width: 100%;
+                font-size: 14px;
             }
             
             .footer-grid {
@@ -1223,6 +1360,7 @@
             
             .payment-icons {
                 justify-content: center;
+                flex-wrap: wrap;
             }
             
             .payment-icons i {
@@ -1231,8 +1369,16 @@
         }
 
         @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 42px;
+            }
+            
+            .hero-content p {
+                font-size: 15px;
+            }
+            
             .featured-image {
-                height: 300px;
+                height: 280px;
             }
             
             .featured-image::after {
@@ -1240,16 +1386,94 @@
                 left: 10px;
             }
             
-            .bts-grid {
-                grid-template-columns: 1fr;
+            .featured-content h2 {
+                font-size: 28px;
             }
             
-            .card-content {
-                padding: 20px 15px;
+            .featured-content p {
+                font-size: 14px;
+            }
+            
+            .featured-meta .label {
+                font-size: 11px;
+            }
+            
+            .featured-meta .value {
+                font-size: 14px;
+            }
+            
+            .bts-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
             
             .card-content h3 {
                 font-size: 20px;
+            }
+            
+            .card-content p {
+                font-size: 13px;
+            }
+            
+            .lookbook-overlay h4 {
+                font-size: 18px;
+            }
+            
+            .lookbook-overlay p {
+                font-size: 12px;
+            }
+            
+            .newsletter-block {
+                padding: 40px 20px;
+            }
+            
+            .newsletter-block h3 {
+                font-size: 24px;
+            }
+            
+            .newsletter-block p {
+                font-size: 14px;
+            }
+            
+            .footer-col h4 {
+                font-size: 18px;
+            }
+            
+            .footer-col p,
+            .footer-col a {
+                font-size: 14px;
+            }
+            
+            .social-wrap {
+                gap: 15px;
+            }
+            
+            .social-wrap a {
+                width: 42px;
+                height: 42px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .featured-image {
+                height: 240px;
+            }
+            
+            .featured-content h2 {
+                font-size: 24px;
+            }
+            
+            .newsletter-block h3 {
+                font-size: 22px;
+            }
+            
+            .newsletter-block p {
+                font-size: 13px;
             }
         }
     </style>
@@ -1315,7 +1539,7 @@
         </div>
     </section>
 
-    <!-- FEATURED STORY - DIPERBAIKI -->
+    <!-- FEATURED STORY -->
     <section class="featured-story" id="featuredStory">
         <div class="featured-image">
             <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=1887&auto=format&fit=crop" alt="Featured Story">
@@ -1649,6 +1873,13 @@
             mobileMenu.classList.toggle('active');
             overlay.classList.toggle('active');
             burger.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         }
 
         // ===== SEARCH FUNCTIONALITY =====
