@@ -621,7 +621,7 @@
             margin: 0 auto;
         }
 
-        /* STORY - DIPERBAIKI */
+        /* STORY - DIPERBAIKI UNTUK MOBILE */
         .story-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -657,16 +657,21 @@
             line-height: 1.7;
             margin-bottom: 20px;
             font-size: 16px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
         }
 
         .story-highlight {
             display: flex;
             gap: 50px;
             margin-top: 40px;
+            flex-wrap: wrap;
         }
 
         .highlight-item {
             text-align: left;
+            flex: 1 1 auto;
         }
 
         .highlight-item .number {
@@ -759,6 +764,8 @@
             color: #555555;
             line-height: 1.7;
             font-size: 16px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         /* VALUES */
@@ -829,6 +836,8 @@
             font-size: 14px;
             line-height: 1.6;
             transition: 0.4s;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         /* ===== MODERN INSTAGRAM FEED SLIDER ===== */
@@ -985,7 +994,7 @@
             background: #000000;
         }
 
-        /* NEWSLETTER - DIPERBAIKI */
+        /* NEWSLETTER - DIPERBAIKI UNTUK MOBILE */
         .newsletter-block {
             background: #000000;
             padding: 80px 40px;
@@ -1002,6 +1011,8 @@
             text-transform: uppercase;
             margin-bottom: 15px;
             letter-spacing: -1px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .newsletter-block p {
@@ -1011,6 +1022,9 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            line-height: 1.5;
         }
 
         .newsletter-form {
@@ -1085,6 +1099,8 @@
             line-height: 1.8;
             font-size: 15px;
             margin-bottom: 25px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .footer-col a {
@@ -1153,7 +1169,7 @@
             color: #000000;
         }
 
-        /* RESPONSIVE */
+        /* RESPONSIVE UNTUK MOBILE - DIPERBAIKI AGAR TIDAK NABRAK */
         @media (max-width: 1200px) {
             .slider-content h1 {
                 font-size: 80px;
@@ -1287,28 +1303,53 @@
                 width: 60px;
             }
             
+            /* STORY CONTAINER DI MOBILE - TURUN KE BAWAH */
             .story-container,
             .vm-showcase {
                 grid-template-columns: 1fr;
-                gap: 50px;
+                gap: 40px;
+            }
+            
+            .story-text {
+                padding: 0 10px;
             }
             
             .story-text h3 {
-                font-size: 38px;
+                font-size: 32px;
+                margin-bottom: 20px;
+                line-height: 1.2;
+            }
+            
+            .story-text p {
+                font-size: 15px;
+                line-height: 1.6;
+                margin-bottom: 18px;
             }
             
             .story-image {
-                height: 400px;
+                height: 350px;
                 width: 100%;
+                margin-top: 20px;
             }
             
             .story-highlight {
-                gap: 30px;
-                flex-wrap: wrap;
+                gap: 25px;
+                margin-top: 30px;
+                justify-content: space-between;
+            }
+            
+            .highlight-item {
+                flex: 1;
+                min-width: 80px;
             }
             
             .highlight-item .number {
-                font-size: 42px;
+                font-size: 36px;
+            }
+            
+            .highlight-item .text {
+                font-size: 11px;
+                letter-spacing: 0.5px;
             }
             
             .values-grid,
@@ -1321,7 +1362,15 @@
             }
             
             .vm-block {
-                padding: 40px 30px;
+                padding: 35px 25px;
+            }
+            
+            .vm-block h3 {
+                font-size: 24px;
+            }
+            
+            .vm-block p {
+                font-size: 15px;
             }
             
             .section-header h2::before,
@@ -1330,36 +1379,53 @@
             }
             
             .section-header h2 {
-                font-size: 36px;
+                font-size: 32px;
+            }
+            
+            .section-header p {
+                font-size: 16px;
             }
             
             .about {
-                padding: 80px 5%;
+                padding: 60px 5%;
             }
             
+            /* NEWSLETTER DI MOBILE - TURUN KE BAWAH DAN LEBIH KECIL */
             .newsletter-block {
-                padding: 60px 30px;
-                margin: 80px auto 60px;
+                padding: 50px 25px;
+                margin: 70px auto 50px;
+                width: 95%;
             }
             
             .newsletter-block h3 {
-                font-size: 36px;
+                font-size: 28px;
+                margin-bottom: 12px;
+                line-height: 1.2;
             }
             
             .newsletter-block p {
-                font-size: 16px;
+                font-size: 15px;
                 margin-bottom: 30px;
+                line-height: 1.5;
+                padding: 0 10px;
             }
             
             .newsletter-form {
                 flex-direction: column;
-                gap: 15px;
+                gap: 12px;
+                width: 100%;
             }
             
             .newsletter-form input,
             .newsletter-form button {
                 width: 100%;
-                padding: 16px 25px;
+                padding: 16px 20px;
+                font-size: 15px;
+            }
+            
+            .newsletter-form button {
+                white-space: normal;
+                padding: 16px 20px;
             }
             
             .footer-bottom {
@@ -1370,6 +1436,7 @@
             
             .payment-icons {
                 justify-content: center;
+                flex-wrap: wrap;
             }
             
             .payment-icons i {
@@ -1380,6 +1447,14 @@
                 flex: 0 0 calc(50% - 12.5px);
                 min-width: auto;
             }
+            
+            .footer-grid {
+                gap: 40px;
+            }
+            
+            .footer-col p {
+                font-size: 14px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -1388,32 +1463,74 @@
             }
             
             .story-image {
-                height: 350px;
+                height: 300px;
             }
             
             .story-text h3 {
+                font-size: 28px;
+            }
+            
+            .story-text p {
+                font-size: 14px;
+            }
+            
+            .story-highlight {
+                gap: 15px;
+            }
+            
+            .highlight-item .number {
                 font-size: 32px;
             }
             
+            .highlight-item .text {
+                font-size: 10px;
+            }
+            
             .vm-block {
-                padding: 30px 25px;
+                padding: 30px 20px;
+            }
+            
+            .vm-block h3 {
+                font-size: 22px;
             }
             
             .value-card {
-                padding: 35px 25px;
+                padding: 30px 20px;
+            }
+            
+            .value-card h4 {
+                font-size: 18px;
+            }
+            
+            .value-card p {
+                font-size: 13px;
             }
             
             .insta-slide {
                 flex: 0 0 100%;
             }
             
+            .newsletter-block {
+                padding: 40px 20px;
+            }
+            
             .newsletter-block h3 {
-                font-size: 28px;
+                font-size: 24px;
+            }
+            
+            .newsletter-block p {
+                font-size: 14px;
+                margin-bottom: 25px;
             }
             
             .newsletter-form input,
             .newsletter-form button {
-                padding: 14px 20px;
+                padding: 14px 18px;
+                font-size: 14px;
+            }
+            
+            .footer-col h4 {
+                font-size: 18px;
             }
         }
 
@@ -1423,15 +1540,31 @@
             }
             
             .story-image {
-                height: 300px;
+                height: 250px;
+            }
+            
+            .story-text h3 {
+                font-size: 24px;
             }
             
             .story-highlight {
-                gap: 20px;
+                gap: 10px;
             }
             
             .highlight-item .number {
-                font-size: 36px;
+                font-size: 28px;
+            }
+            
+            .highlight-item .text {
+                font-size: 9px;
+            }
+            
+            .newsletter-block h3 {
+                font-size: 22px;
+            }
+            
+            .newsletter-block p {
+                font-size: 13px;
             }
         }
     </style>
