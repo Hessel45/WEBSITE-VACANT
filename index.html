@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>VACANT APPAREL | Beyond Fashion</title>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -13,11 +13,21 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            width: 100%;
+            min-height: 100%;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        }
+
         body {
             background: #ffffff;
             color: #111111;
             font-family: 'Space Grotesk', sans-serif;
-            overflow-x: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
         h1, h2, h3, h4 {
@@ -193,6 +203,8 @@
             transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 999;
             box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .mobile-menu.active {
@@ -324,13 +336,14 @@
             display: none !important;
         }
 
-        /* FULL SCREEN SLIDER */
+        /* FULL SCREEN SLIDER - FIXED FOR IPHONE */
         .hero {
             position: relative;
             height: 100vh;
             width: 100%;
             overflow: hidden;
             margin-top: 0;
+            flex-shrink: 0;
         }
 
         .slider-container {
@@ -609,6 +622,7 @@
             padding: 120px 5%;
             max-width: 1400px;
             margin: 0 auto;
+            width: 100%;
         }
 
         /* STORY */
@@ -978,6 +992,9 @@
             text-align: center;
             color: #ffffff;
             margin-bottom: 60px;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .newsletter-block h3 {
@@ -1037,6 +1054,7 @@
         footer {
             background: #f8f8f8;
             padding: 80px 5% 40px;
+            width: 100%;
         }
 
         .footer-grid {
@@ -1178,6 +1196,19 @@
         }
 
         @media (max-width: 768px) {
+            /* Fix untuk iPhone scrolling */
+            html, body {
+                height: auto;
+                min-height: 100%;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                position: relative;
+            }
+            
+            body {
+                display: block;
+            }
+            
             .nav-icons {
                 display: none;
             }
@@ -1190,21 +1221,29 @@
             .hero {
                 height: 100vh;
                 min-height: 600px;
+                max-height: 100vh;
+                width: 100vw;
+                position: relative;
+                left: 0;
+                right: 0;
             }
             
             .slider-content {
                 bottom: 120px;
                 left: 5%;
                 right: 5%;
+                width: 90%;
             }
             
             .slider-content h1 {
                 font-size: 48px;
                 letter-spacing: -2px;
+                line-height: 1;
             }
             
             .slider-content p {
                 font-size: 16px;
+                margin-bottom: 25px;
             }
             
             .slider-btn {
@@ -1218,6 +1257,7 @@
                 right: 5%;
                 flex-wrap: wrap;
                 gap: 20px;
+                width: 90%;
             }
             
             .slider-arrow {
@@ -1240,9 +1280,18 @@
                 font-size: 38px;
             }
             
+            .story-image {
+                height: 450px;
+                width: 100%;
+            }
+            
             .values-grid,
             .footer-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .values-grid {
+                gap: 20px;
             }
             
             .section-header h2::before,
@@ -1250,9 +1299,19 @@
                 display: none;
             }
             
+            .section-header h2 {
+                font-size: 36px;
+            }
+            
+            .about {
+                padding: 80px 5%;
+                width: 100%;
+            }
+            
             .newsletter-block {
                 padding: 50px 25px;
-                margin: 60px 5%;
+                margin: 60px auto;
+                width: 90%;
             }
             
             .newsletter-block h3 {
@@ -1261,6 +1320,7 @@
             
             .newsletter-form {
                 flex-direction: column;
+                width: 100%;
             }
             
             .newsletter-form input,
@@ -1281,11 +1341,55 @@
             .payment-icons i {
                 font-size: 26px;
             }
+            
+            .insta-slide {
+                flex: 0 0 calc(50% - 12.5px);
+                min-width: auto;
+            }
         }
         
         @media (max-width: 480px) {
             .slider-content h1 {
                 font-size: 42px;
+            }
+            
+            .story-image {
+                height: 350px;
+            }
+            
+            .vm-block {
+                padding: 40px 30px;
+            }
+            
+            .value-card {
+                padding: 40px 25px;
+            }
+            
+            .insta-slide {
+                flex: 0 0 100%;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .slider-content h1 {
+                font-size: 36px;
+            }
+            
+            .story-image {
+                height: 300px;
+            }
+        }
+
+        /* Fix untuk iPhone notch dan dynamic island */
+        @supports (padding: max(0px)) {
+            header {
+                padding-left: max(5%, env(safe-area-inset-left));
+                padding-right: max(5%, env(safe-area-inset-right));
+            }
+            
+            .hero {
+                padding-left: env(safe-area-inset-left);
+                padding-right: env(safe-area-inset-right);
             }
         }
     </style>
@@ -1612,6 +1716,15 @@
             mobileMenu.classList.toggle('active');
             overlay.classList.toggle('active');
             burger.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+                document.documentElement.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+                document.documentElement.style.overflow = '';
+            }
         }
 
         // ===== SEARCH FUNCTIONALITY =====
@@ -1761,9 +1874,6 @@
             const index = text.toLowerCase().indexOf(query.toLowerCase());
             
             if (index >= 0) {
-                const span = document.createElement('span');
-                span.className = 'search-highlight';
-                
                 const before = text.substring(0, index);
                 const match = text.substring(index, index + query.length);
                 const after = text.substring(index + query.length);
@@ -2052,6 +2162,7 @@
                 }
                 instaDragging = false;
                 instaWrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.1, 0.15, 1)';
+                instaWrapper.style.cursor = 'grab';
             }
         });
 
@@ -2059,6 +2170,7 @@
             if (instaDragging) {
                 instaDragging = false;
                 instaWrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.1, 0.15, 1)';
+                instaWrapper.style.cursor = 'grab';
             }
         });
 
@@ -2066,6 +2178,7 @@
             if (instaDragging) {
                 instaDragging = false;
                 instaWrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.1, 0.15, 1)';
+                instaWrapper.style.cursor = 'grab';
             }
         });
 
@@ -2105,6 +2218,7 @@
         generateDots();
         updateInstaSlider();
 
+        // Expose functions globally
         window.toggleMenu = toggleMenu;
         window.prevSlide = prevSlide;
         window.nextSlide = nextSlide;
@@ -2116,6 +2230,13 @@
         window.clearSearch = clearSearch;
         window.clearMobileSearch = clearMobileSearch;
         window.handleSearch = handleSearch;
+
+        // Fix untuk iPhone touch events
+        document.addEventListener('touchmove', function(e) {
+            if (e.target.closest('.slider-wrapper')) {
+                e.preventDefault();
+            }
+        }, { passive: false });
     </script>
 </body>
 </html>
