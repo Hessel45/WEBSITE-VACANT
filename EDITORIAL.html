@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>VACANT · EDITORIAL</title>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -18,11 +18,14 @@
             color: #111111;
             font-family: 'Space Grotesk', sans-serif;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         h1, h2, h3, h4 {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
+            letter-spacing: -0.02em;
         }
 
         /* PREMIUM NAVBAR */
@@ -324,7 +327,7 @@
             display: none !important;
         }
 
-        /* FULL HERO SECTION - SATU GAMBAR */
+        /* FULL HERO SECTION */
         .editorial-hero {
             height: 100vh;
             width: 100%;
@@ -368,7 +371,7 @@
         }
 
         .hero-content h1 {
-            font-size: 120px;
+            font-size: clamp(60px, 15vw, 120px);
             font-weight: 800;
             text-transform: uppercase;
             line-height: 0.9;
@@ -380,12 +383,12 @@
         }
 
         .hero-content p {
-            font-size: 18px;
+            font-size: clamp(16px, 4vw, 18px);
             max-width: 600px;
             margin: 0 auto 35px;
             opacity: 0;
             animation: fadeInUp 0.8s 0.4s forwards;
-            line-height: 1.8;
+            line-height: 1.6;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
@@ -445,14 +448,14 @@
             }
         }
 
-        /* FEATURED STORY */
+        /* FEATURED STORY - DIPERBAIKI */
         .featured-story {
-            padding: 120px 5%;
+            padding: 100px 5%;
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 80px;
+            gap: 60px;
             align-items: center;
         }
 
@@ -460,6 +463,7 @@
             position: relative;
             overflow: hidden;
             height: 600px;
+            width: 100%;
         }
 
         .featured-image img {
@@ -467,6 +471,7 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.8s;
+            display: block;
         }
 
         .featured-image:hover img {
@@ -495,16 +500,17 @@
         }
 
         .featured-content h2 {
-            font-size: 56px;
+            font-size: clamp(36px, 8vw, 56px);
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 25px;
             text-transform: uppercase;
+            letter-spacing: -1px;
         }
 
         .featured-content p {
             color: #555555;
-            line-height: 1.8;
+            line-height: 1.7;
             margin-bottom: 30px;
             font-size: 17px;
         }
@@ -566,7 +572,7 @@
             transform: translateX(8px);
         }
 
-        /* SECTION HEADER */
+        /* SECTION HEADER - SAMA DENGAN CODE2 */
         .section-header {
             text-align: center;
             margin: 100px 0 60px;
@@ -574,7 +580,7 @@
         }
 
         .section-header h2 {
-            font-size: 56px;
+            font-size: clamp(36px, 8vw, 56px);
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: -1px;
@@ -606,6 +612,7 @@
             font-size: 18px;
             max-width: 600px;
             margin: 0 auto;
+            line-height: 1.6;
         }
 
         /* EDITORIAL GRID */
@@ -673,13 +680,14 @@
             font-weight: 800;
             margin-bottom: 12px;
             text-transform: uppercase;
-            line-height: 1.3;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
         }
 
         .card-content p {
             color: #666666;
             font-size: 15px;
-            line-height: 1.7;
+            line-height: 1.6;
             margin-bottom: 20px;
         }
 
@@ -694,7 +702,7 @@
             padding-top: 20px;
         }
 
-        /* LOOKBOOK SLIDER - MENGGUNAKAN INSTA DOTS */
+        /* LOOKBOOK SLIDER */
         .lookbook {
             margin: 100px 0;
             width: 100%;
@@ -766,6 +774,7 @@
             font-weight: 800;
             margin-bottom: 8px;
             text-transform: uppercase;
+            letter-spacing: -0.5px;
         }
 
         .lookbook-overlay p {
@@ -901,26 +910,31 @@
             opacity: 1;
         }
 
-        /* NEWSLETTER */
+        /* NEWSLETTER - SAMA DENGAN CODE2 */
         .newsletter-block {
             background: #000000;
-            padding: 100px;
+            padding: clamp(40px, 8vw, 100px);
             text-align: center;
             color: #ffffff;
             margin: 60px 5% 60px;
         }
 
         .newsletter-block h3 {
-            font-size: 52px;
+            font-size: clamp(32px, 8vw, 52px);
             font-weight: 800;
             text-transform: uppercase;
             margin-bottom: 20px;
+            letter-spacing: -1px;
         }
 
         .newsletter-block p {
             color: #cccccc;
             margin-bottom: 50px;
-            font-size: 18px;
+            font-size: clamp(16px, 4vw, 18px);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
         }
 
         .newsletter-form {
@@ -938,6 +952,7 @@
             color: #ffffff;
             font-size: 16px;
             outline: none;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .newsletter-form input::placeholder {
@@ -956,6 +971,8 @@
             transition: 0.3s;
             border: 2px solid #ffffff;
             font-size: 15px;
+            font-family: 'Syne', sans-serif;
+            white-space: nowrap;
         }
 
         .newsletter-form button:hover {
@@ -963,7 +980,7 @@
             color: #ffffff;
         }
 
-        /* FOOTER */
+        /* FOOTER - SAMA DENGAN CODE2 */
         footer {
             background: #f8f8f8;
             padding: 80px 5% 40px;
@@ -1063,16 +1080,12 @@
 
         /* RESPONSIVE */
         @media (max-width: 1200px) {
-            .hero-content h1 {
-                font-size: 90px;
-            }
-            
             .featured-story {
                 gap: 40px;
             }
             
-            .featured-content h2 {
-                font-size: 42px;
+            .featured-image {
+                height: 500px;
             }
             
             .editorial-grid {
@@ -1085,6 +1098,19 @@
             
             .bts-grid {
                 grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .section-header h2::before,
+            .section-header h2::after {
+                width: 40px;
+            }
+            
+            .section-header h2::before {
+                left: -60px;
+            }
+            
+            .section-header h2::after {
+                right: -60px;
             }
             
             .search-box.active {
@@ -1105,29 +1131,13 @@
                 display: block;
             }
             
-            .section-header h2 {
-                font-size: 42px;
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
             
             .section-header h2::before,
             .section-header h2::after {
-                width: 40px;
-            }
-            
-            .hero-content h1 {
-                font-size: 60px;
-            }
-            
-            .featured-story {
-                grid-template-columns: 1fr;
-            }
-            
-            .featured-image {
-                height: 500px;
-            }
-            
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
+                display: none;
             }
         }
 
@@ -1145,17 +1155,24 @@
                 padding: 0 20px;
             }
             
-            .hero-content h1 {
-                font-size: 45px;
-                letter-spacing: -2px;
-            }
-            
-            .hero-content p {
-                font-size: 16px;
-            }
-            
             .hero-btn {
-                padding: 15px 40px;
+                padding: 14px 40px;
+                font-size: 14px;
+            }
+            
+            .featured-story {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 60px 5%;
+            }
+            
+            .featured-image {
+                height: 400px;
+            }
+            
+            .featured-image::after {
+                top: 15px;
+                left: 15px;
             }
             
             .featured-content h2 {
@@ -1169,6 +1186,7 @@
             
             .editorial-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
             }
             
             .lookbook-slide {
@@ -1179,25 +1197,22 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .section-header h2::before,
-            .section-header h2::after {
-                display: none;
-            }
-            
             .newsletter-block {
-                padding: 60px 30px;
-            }
-            
-            .newsletter-block h3 {
-                font-size: 36px;
+                padding: 50px 30px;
             }
             
             .newsletter-form {
                 flex-direction: column;
             }
             
+            .newsletter-form button {
+                padding: 20px 30px;
+                width: 100%;
+            }
+            
             .footer-grid {
                 grid-template-columns: 1fr;
+                gap: 40px;
             }
             
             .footer-bottom {
@@ -1211,21 +1226,30 @@
             }
             
             .payment-icons i {
-                font-size: 26px;
+                font-size: 24px;
             }
         }
 
         @media (max-width: 480px) {
-            .hero-content h1 {
-                font-size: 36px;
+            .featured-image {
+                height: 300px;
             }
             
-            .featured-image {
-                height: 350px;
+            .featured-image::after {
+                top: 10px;
+                left: 10px;
             }
             
             .bts-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .card-content {
+                padding: 20px 15px;
+            }
+            
+            .card-content h3 {
+                font-size: 20px;
             }
         }
     </style>
@@ -1280,7 +1304,7 @@
         <i class="fas fa-times" onclick="clearSearch()"></i>
     </div>
 
-    <!-- FULL HERO SECTION - SATU GAMBAR (TETAP MUNCUL) -->
+    <!-- FULL HERO SECTION -->
     <section class="editorial-hero" id="heroSection">
         <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1740&auto=format&fit=crop" alt="Editorial Hero">
         <div class="hero-content">
@@ -1291,14 +1315,14 @@
         </div>
     </section>
 
-    <!-- FEATURED STORY -->
+    <!-- FEATURED STORY - DIPERBAIKI -->
     <section class="featured-story" id="featuredStory">
         <div class="featured-image">
             <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=1887&auto=format&fit=crop" alt="Featured Story">
         </div>
         <div class="featured-content">
             <span class="tag">FEATURED STORY</span>
-            <h2>URBAN<br>RENAISSANCE</h2>
+            <h2>URBAN RENAISSANCE</h2>
             <p>In our latest editorial, we explore the resurgence of 90s streetwear aesthetics reimagined for the modern era. Shot in the heart of Tokyo's Shibuya district, this series captures the raw energy of city life and the individuals who shape it.</p>
             
             <div class="featured-meta">
@@ -1338,7 +1362,7 @@
                 <div class="card-category">SS25</div>
             </div>
             <div class="card-content">
-                <h3>CONCRETE<br>JUNGLE</h3>
+                <h3>CONCRETE JUNGLE</h3>
                 <p>Exploring the relationship between architecture and fashion in New York's brutalist structures.</p>
                 <div class="card-meta">
                     <span>PHOTO: ALEX RIVERA</span>
@@ -1354,7 +1378,7 @@
                 <div class="card-category">LIMITED</div>
             </div>
             <div class="card-content">
-                <h3>NEON<br>DREAMS</h3>
+                <h3>NEON DREAMS</h3>
                 <p>A visual journey through Seoul's nightlife, capturing the energy of youth culture.</p>
                 <div class="card-meta">
                     <span>PHOTO: MIN JUN</span>
@@ -1370,7 +1394,7 @@
                 <div class="card-category">COLLAB</div>
             </div>
             <div class="card-content">
-                <h3>RAW<br>EDGE</h3>
+                <h3>RAW EDGE</h3>
                 <p>Behind the scenes of our collaboration with underground artist KRIEG.</p>
                 <div class="card-meta">
                     <span>PHOTO: SARAH CHEN</span>
@@ -1386,7 +1410,7 @@
                 <div class="card-category">ACCESSORIES</div>
             </div>
             <div class="card-content">
-                <h3>METAL<br>MORPHOSIS</h3>
+                <h3>METAL MORPHOSIS</h3>
                 <p>Exploring our latest hardware collection through abstract photography.</p>
                 <div class="card-meta">
                     <span>PHOTO: DAVID KIM</span>
@@ -1402,7 +1426,7 @@
                 <div class="card-category">DENIM</div>
             </div>
             <div class="card-content">
-                <h3>INDIGO<br>CHRONICLES</h3>
+                <h3>INDIGO CHRONICLES</h3>
                 <p>The art of Japanese selvedge denim and its journey from loom to garment.</p>
                 <div class="card-meta">
                     <span>PHOTO: YUKI SATO</span>
@@ -1418,7 +1442,7 @@
                 <div class="card-category">TECH</div>
             </div>
             <div class="card-content">
-                <h3>FUNCTIONAL<br>FORMS</h3>
+                <h3>FUNCTIONAL FORMS</h3>
                 <p>How technical fabrics are reshaping contemporary streetwear silhouettes.</p>
                 <div class="card-meta">
                     <span>PHOTO: MARCUS LEE</span>
@@ -1434,7 +1458,7 @@
         <p>SS25 Collection: Urban Renaissance</p>
     </div>
 
-    <!-- LOOKBOOK SLIDER - MENGGUNAKAN INSTA DOTS -->
+    <!-- LOOKBOOK SLIDER -->
     <div class="lookbook" id="lookbook">
         <div class="lookbook-container">
             <div class="lookbook-wrapper" id="lookbookWrapper">
@@ -1685,7 +1709,7 @@
                 mobileSearch.value = query;
             }
             
-            // Get all searchable elements (excluding hero section if you don't want to hide it)
+            // Get all searchable elements
             const searchableElements = document.querySelectorAll(
                 '.featured-content .tag, .featured-content h2, .featured-content p, ' +
                 '.meta-item .label, .meta-item .value, ' +
@@ -1695,7 +1719,7 @@
                 '.newsletter-block h3, .newsletter-block p'
             );
             
-            // Get all sections that can be hidden (hero section tidak termasuk)
+            // Get all sections that can be hidden
             const sections = [
                 document.getElementById('featuredStory'),
                 document.getElementById('latestStoriesHeader'),
@@ -1731,7 +1755,7 @@
                 }
             });
             
-            // Hide sections that don't contain any matches (hero section tetap muncul)
+            // Hide sections that don't contain any matches
             sections.forEach(section => {
                 if (section) {
                     const sectionText = section.textContent || section.innerText;
@@ -1790,7 +1814,7 @@
             }
         }
 
-        // ========== LOOKBOOK SLIDER DENGAN INSTA DOTS ==========
+        // ========== LOOKBOOK SLIDER ==========
         const lookbookWrapper = document.getElementById('lookbookWrapper');
         const lookbookSlides = document.querySelectorAll('.lookbook-slide');
         const dotsContainer = document.getElementById('lookbookDots');
@@ -1858,7 +1882,7 @@
             updateLookbookSlider();
         }
 
-        // Drag for lookbook
+        // Drag functionality
         let lookbookStartX, lookbookDragging = false;
         
         lookbookWrapper.addEventListener('mousedown', (e) => {
