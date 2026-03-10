@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>VACANT APPAREL | Beyond Fashion</title>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -13,11 +13,18 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            width: 100%;
+            min-height: 100%;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+
         body {
             background: #ffffff;
             color: #111111;
             font-family: 'Space Grotesk', sans-serif;
-            overflow-x: hidden;
+            position: relative;
         }
 
         h1, h2, h3, h4 {
@@ -193,6 +200,8 @@
             transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 999;
             box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .mobile-menu.active {
@@ -563,10 +572,11 @@
             pointer-events: auto;
         }
 
-        /* SECTION TITLE */
+        /* SECTION TITLE - disesuaikan dengan CODE2 */
         .section-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin: 100px 0 60px;
+            padding: 0 5%;
         }
 
         .section-header h2 {
@@ -971,13 +981,13 @@
             background: #000000;
         }
 
-        /* NEWSLETTER */
+        /* NEWSLETTER - disesuaikan dengan CODE2 */
         .newsletter-block {
             background: #000000;
             padding: 100px;
             text-align: center;
             color: #ffffff;
-            margin-bottom: 60px;
+            margin: 120px 5% 60px;
         }
 
         .newsletter-block h3 {
@@ -1131,7 +1141,7 @@
             color: #000000;
         }
 
-        /* RESPONSIVE */
+        /* RESPONSIVE - disesuaikan dengan CODE2 */
         @media (max-width: 1200px) {
             .slider-content h1 {
                 font-size: 80px;
@@ -1178,6 +1188,15 @@
         }
 
         @media (max-width: 768px) {
+            /* Fix untuk iPhone scrolling */
+            html, body {
+                height: auto;
+                min-height: 100%;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                position: relative;
+            }
+            
             .nav-icons {
                 display: none;
             }
@@ -1190,12 +1209,18 @@
             .hero {
                 height: 100vh;
                 min-height: 600px;
+                max-height: 100vh;
+                width: 100vw;
+                position: relative;
+                left: 0;
+                right: 0;
             }
             
             .slider-content {
                 bottom: 120px;
                 left: 5%;
                 right: 5%;
+                width: 90%;
             }
             
             .slider-content h1 {
@@ -1240,9 +1265,18 @@
                 font-size: 38px;
             }
             
+            .story-image {
+                height: 450px;
+                width: 100%;
+            }
+            
             .values-grid,
             .footer-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .values-grid {
+                gap: 20px;
             }
             
             .section-header h2::before,
@@ -1250,9 +1284,17 @@
                 display: none;
             }
             
+            .section-header h2 {
+                font-size: 36px;
+            }
+            
+            .about {
+                padding: 80px 5%;
+            }
+            
             .newsletter-block {
                 padding: 50px 25px;
-                margin: 60px 5%;
+                margin: 80px 5% 40px;
             }
             
             .newsletter-block h3 {
@@ -1261,6 +1303,7 @@
             
             .newsletter-form {
                 flex-direction: column;
+                width: 100%;
             }
             
             .newsletter-form input,
@@ -1281,11 +1324,42 @@
             .payment-icons i {
                 font-size: 26px;
             }
+            
+            .insta-slide {
+                flex: 0 0 calc(50% - 12.5px);
+                min-width: auto;
+            }
         }
         
         @media (max-width: 480px) {
             .slider-content h1 {
                 font-size: 42px;
+            }
+            
+            .story-image {
+                height: 350px;
+            }
+            
+            .vm-block {
+                padding: 40px 30px;
+            }
+            
+            .value-card {
+                padding: 40px 25px;
+            }
+            
+            .insta-slide {
+                flex: 0 0 100%;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .slider-content h1 {
+                font-size: 36px;
+            }
+            
+            .story-image {
+                height: 300px;
             }
         }
     </style>
@@ -1448,7 +1522,7 @@
             </div>
         </div>
 
-        <!-- CORE VALUES -->
+        <!-- CORE VALUES - Menggunakan section-header seperti CODE2 -->
         <div class="section-header text-container">
             <h2>VALUES</h2>
             <p>What drives us every day</p>
@@ -1528,9 +1602,9 @@
             <div class="insta-dots" id="instaDots"></div>
         </div>
 
-        <!-- NEWSLETTER -->
+        <!-- NEWSLETTER - dengan margin dan padding seperti CODE2 -->
         <div class="newsletter-block text-container">
-            <h3>Join The Movement</h3>
+            <h3>JOIN THE MOVEMENT</h3>
             <p>Subscribe for exclusive drops, early access, and special offers</p>
             <div class="newsletter-form">
                 <input type="email" placeholder="Your email address">
@@ -1612,6 +1686,15 @@
             mobileMenu.classList.toggle('active');
             overlay.classList.toggle('active');
             burger.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+                document.documentElement.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+                document.documentElement.style.overflow = '';
+            }
         }
 
         // ===== SEARCH FUNCTIONALITY =====
@@ -1761,9 +1844,6 @@
             const index = text.toLowerCase().indexOf(query.toLowerCase());
             
             if (index >= 0) {
-                const span = document.createElement('span');
-                span.className = 'search-highlight';
-                
                 const before = text.substring(0, index);
                 const match = text.substring(index, index + query.length);
                 const after = text.substring(index + query.length);
@@ -2052,6 +2132,7 @@
                 }
                 instaDragging = false;
                 instaWrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.1, 0.15, 1)';
+                instaWrapper.style.cursor = 'grab';
             }
         });
 
@@ -2059,6 +2140,7 @@
             if (instaDragging) {
                 instaDragging = false;
                 instaWrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.1, 0.15, 1)';
+                instaWrapper.style.cursor = 'grab';
             }
         });
 
@@ -2066,6 +2148,7 @@
             if (instaDragging) {
                 instaDragging = false;
                 instaWrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.1, 0.15, 1)';
+                instaWrapper.style.cursor = 'grab';
             }
         });
 
