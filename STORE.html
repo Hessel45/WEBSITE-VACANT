@@ -279,7 +279,7 @@
             pointer-events: all;
         }
 
-        /* HERO SLIDER (full screen) - DIPERBAIKI */
+        /* HERO SLIDER (full screen) - DIPERBAIKI UNTUK SCROLL */
         .hero {
             position: relative;
             height: 100vh;
@@ -292,7 +292,7 @@
             height: 100%;
             width: 100%;
             position: relative;
-            touch-action: pan-y pinch-zoom;
+            touch-action: pan-y pinch-zoom; /* Penting: mengizinkan scroll vertikal */
         }
 
         .slider-wrapper {
@@ -432,45 +432,17 @@
             }
         }
 
+        /* SLIDER CONTROLS - HANYA PROGRESS BAR (ARROW DAN COUNTER DIHAPUS) */
         .slider-controls {
             position: absolute;
             bottom: 50px;
-            left: 8%;
-            right: 8%;
+            left: 0;
+            right: 0;
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* Pusatkan progress bar */
             align-items: center;
             z-index: 100;
             pointer-events: none;
-        }
-
-        .slider-arrows {
-            display: flex;
-            gap: 20px;
-            pointer-events: auto;
-        }
-
-        .slider-arrow {
-            width: 60px;
-            height: 60px;
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: #ffffff;
-            font-size: 22px;
-        }
-
-        .slider-arrow:hover {
-            background: #ffffff;
-            color: #000000;
-            border-color: #ffffff;
-            transform: scale(1.1);
         }
 
         .slider-progress {
@@ -507,14 +479,6 @@
         @keyframes progress {
             from { width: 0; }
             to { width: 100%; }
-        }
-
-        .slider-counter {
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            pointer-events: auto;
         }
 
         /* PAGE HEADER */
@@ -1041,24 +1005,20 @@
             .slider-content {
                 bottom: 120px;
                 left: 5%;
+                right: 5%;
+                width: 90%;
             }
             
             .slider-content h1 { font-size: 48px; }
             .slider-content p { font-size: 16px; }
             .slider-btn { padding: 14px 40px; }
             
+            /* Slider controls hanya progress bar */
             .slider-controls {
                 bottom: 30px;
                 left: 5%;
                 right: 5%;
-                flex-wrap: wrap;
-                gap: 20px;
-            }
-            
-            .slider-arrow {
-                width: 44px;
-                height: 44px;
-                font-size: 18px;
+                justify-content: center;
             }
             
             .progress-item { width: 60px; }
@@ -1208,7 +1168,7 @@
         <i class="fas fa-times" onclick="clearSearch()"></i>
     </div>
 
-    <!-- HERO SLIDER -->
+    <!-- HERO SLIDER - TANPA ARROW DAN COUNTER -->
     <section class="hero">
         <div class="slider-container" id="sliderContainer">
             <div class="slider-wrapper" id="sliderWrapper">
@@ -1244,18 +1204,12 @@
                 </div>
             </div>
         </div>
+        <!-- SLIDER CONTROLS - HANYA PROGRESS BAR -->
         <div class="slider-controls">
-            <div class="slider-arrows">
-                <div class="slider-arrow" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></div>
-                <div class="slider-arrow" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></div>
-            </div>
             <div class="slider-progress">
                 <div class="progress-item active" onclick="goToSlide(0)"></div>
                 <div class="progress-item" onclick="goToSlide(1)"></div>
                 <div class="progress-item" onclick="goToSlide(2)"></div>
-            </div>
-            <div class="slider-counter">
-                <span id="currentSlide">01</span> / <span id="totalSlides">03</span>
             </div>
         </div>
     </section>
@@ -1671,15 +1625,20 @@
             grid2Products.forEach(product => productGrid2.appendChild(product));
         }
 
-        // ===== SLIDER =====
+        // ===== SLIDER DENGAN SCROLL FIX =====
         const sliderWrapper = document.getElementById('sliderWrapper');
         const sliderItems = document.querySelectorAll('.slider-item');
         const progressItems = document.querySelectorAll('.progress-item');
-        const currentSlideSpan = document.getElementById('currentSlide');
-        const totalSlidesSpan = document.getElementById('totalSlides');
-        let currentIndex = 0, startX = 0, isDragging = false, slideWidth = 0, autoSlideInterval;
+        
+        let currentIndex = 0;
+        let startX = 0;
+        let startY = 0; // Menambahkan tracking untuk sumbu Y
+        let isDragging = false;
+        let isHorizontalDrag = false; // Menandai apakah ini drag horizontal
+        let slideWidth = 0;
+        let autoSlideInterval;
+
         const totalSlides = sliderItems.length;
-        totalSlidesSpan.textContent = totalSlides < 10 ? '0' + totalSlides : totalSlides;
 
         function updateSlide(index) {
             if (index < 0) index = totalSlides - 1;
@@ -1703,125 +1662,160 @@
                     item.classList.remove('active');
                 }
             });
-            
-            currentSlideSpan.textContent = (currentIndex + 1) < 10 ? '0' + (currentIndex + 1) : (currentIndex + 1);
         }
-        
+
         function nextSlide() { 
             currentIndex++; 
             updateSlide(currentIndex); 
             resetAutoSlide(); 
         }
-        
+
         function prevSlide() { 
             currentIndex--; 
             updateSlide(currentIndex); 
             resetAutoSlide(); 
         }
-        
+
         function goToSlide(index) { 
             currentIndex = index; 
             updateSlide(currentIndex); 
             resetAutoSlide(); 
         }
-        
+
         function startAutoSlide() { 
             autoSlideInterval = setInterval(() => { 
                 currentIndex++; 
                 updateSlide(currentIndex); 
             }, 5000); 
         }
-        
+
         function resetAutoSlide() { 
             clearInterval(autoSlideInterval); 
             startAutoSlide(); 
         }
 
-        // Drag events
-        sliderWrapper.addEventListener('mousedown', (e) => { 
-            isDragging = true; 
-            startX = e.pageX - sliderWrapper.offsetLeft; 
-            sliderWrapper.style.transition = 'none'; 
+        // Mouse events untuk desktop
+        sliderWrapper.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX;
+            startY = e.pageY;
+            isHorizontalDrag = false;
+            sliderWrapper.style.transition = 'none';
             sliderWrapper.style.cursor = 'grabbing';
-            clearInterval(autoSlideInterval); 
+            clearInterval(autoSlideInterval);
         });
-        
-        sliderWrapper.addEventListener('mousemove', (e) => { 
-            if (!isDragging) return; 
-            e.preventDefault(); 
-            const x = e.pageX - sliderWrapper.offsetLeft; 
-            const walk = (x - startX) * 2; 
-            if (Math.abs(walk) > slideWidth * 0.2) { 
-                if (walk > 0 && currentIndex > 0) {
-                    currentIndex--; 
-                } else if (walk < 0 && currentIndex < totalSlides - 1) {
-                    currentIndex++; 
+
+        sliderWrapper.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            
+            const currentX = e.pageX;
+            const currentY = e.pageY;
+            const diffX = Math.abs(currentX - startX);
+            const diffY = Math.abs(currentY - startY);
+            
+            // Jika pergerakan horizontal lebih dominan, tangani sebagai drag slider
+            if (diffX > diffY && diffX > 20) {
+                e.preventDefault();
+                isHorizontalDrag = true;
+                
+                const walk = (currentX - startX) * 2;
+                const slideWidth = sliderWrapper.clientWidth;
+                
+                if (Math.abs(walk) > slideWidth * 0.15) {
+                    if (walk > 0 && currentIndex > 0) {
+                        currentIndex--;
+                        updateSlide(currentIndex);
+                        isDragging = false;
+                        sliderWrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    } else if (walk < 0 && currentIndex < totalSlides - 1) {
+                        currentIndex++;
+                        updateSlide(currentIndex);
+                        isDragging = false;
+                        sliderWrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    }
+                    isDragging = false;
                 }
-                updateSlide(currentIndex); 
-                isDragging = false; 
-                sliderWrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)'; 
-            } 
+            }
         });
-        
-        sliderWrapper.addEventListener('mouseup', () => { 
-            if (isDragging) { 
-                isDragging = false; 
-                sliderWrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)'; 
+
+        sliderWrapper.addEventListener('mouseup', () => {
+            if (isDragging) {
+                isDragging = false;
+                sliderWrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
                 sliderWrapper.style.cursor = 'grab';
-                updateSlide(currentIndex); 
-                startAutoSlide(); 
-            } 
+                updateSlide(currentIndex);
+                startAutoSlide();
+            }
         });
-        
-        sliderWrapper.addEventListener('mouseleave', () => { 
-            if (isDragging) { 
-                isDragging = false; 
-                sliderWrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)'; 
+
+        sliderWrapper.addEventListener('mouseleave', () => {
+            if (isDragging) {
+                isDragging = false;
+                sliderWrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
                 sliderWrapper.style.cursor = 'grab';
-                updateSlide(currentIndex); 
-                startAutoSlide(); 
-            } 
+                updateSlide(currentIndex);
+                startAutoSlide();
+            }
         });
-        
+
         // Touch events untuk mobile
-        sliderWrapper.addEventListener('touchstart', (e) => { 
-            isDragging = true; 
-            startX = e.touches[0].pageX - sliderWrapper.offsetLeft; 
-            sliderWrapper.style.transition = 'none'; 
-            clearInterval(autoSlideInterval); 
+        sliderWrapper.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].pageX;
+            startY = e.touches[0].pageY;
+            isHorizontalDrag = false;
+            sliderWrapper.style.transition = 'none';
+            clearInterval(autoSlideInterval);
         });
-        
-        sliderWrapper.addEventListener('touchmove', (e) => { 
-            if (!isDragging) return; 
-            e.preventDefault(); 
-            const x = e.touches[0].pageX - sliderWrapper.offsetLeft; 
-            const walk = (x - startX) * 2; 
-            if (Math.abs(walk) > slideWidth * 0.15) { 
-                if (walk > 0 && currentIndex > 0) {
-                    currentIndex--; 
-                } else if (walk < 0 && currentIndex < totalSlides - 1) {
-                    currentIndex++; 
+
+        sliderWrapper.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            
+            const currentX = e.touches[0].pageX;
+            const currentY = e.touches[0].pageY;
+            const diffX = Math.abs(currentX - startX);
+            const diffY = Math.abs(currentY - startY);
+            
+            // Jika pergerakan horizontal lebih dominan, cegah scroll vertikal
+            if (diffX > diffY && diffX > 15) {
+                e.preventDefault(); // Mencegah scroll hanya ketika drag horizontal
+                isHorizontalDrag = true;
+                
+                const walk = (currentX - startX) * 2;
+                const slideWidth = sliderWrapper.clientWidth;
+                
+                if (Math.abs(walk) > slideWidth * 0.1) {
+                    if (walk > 0 && currentIndex > 0) {
+                        currentIndex--;
+                        updateSlide(currentIndex);
+                        isDragging = false;
+                        sliderWrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    } else if (walk < 0 && currentIndex < totalSlides - 1) {
+                        currentIndex++;
+                        updateSlide(currentIndex);
+                        isDragging = false;
+                        sliderWrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    }
+                    isDragging = false;
                 }
-                updateSlide(currentIndex); 
-                isDragging = false; 
-                sliderWrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)'; 
-            } 
+            }
+            // Jika pergerakan vertikal lebih dominan, biarkan scroll terjadi (tidak perlu e.preventDefault)
         });
-        
-        sliderWrapper.addEventListener('touchend', () => { 
-            if (isDragging) { 
-                isDragging = false; 
-                sliderWrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)'; 
-                updateSlide(currentIndex); 
-                startAutoSlide(); 
-            } 
+
+        sliderWrapper.addEventListener('touchend', () => {
+            if (isDragging) {
+                isDragging = false;
+                sliderWrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                updateSlide(currentIndex);
+                startAutoSlide();
+            }
         });
 
         window.addEventListener('resize', () => { 
             slideWidth = sliderWrapper.clientWidth; 
             updateSlide(currentIndex); 
         });
-        
+
         updateSlide(0);
         startAutoSlide();
 
