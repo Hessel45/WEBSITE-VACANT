@@ -333,7 +333,7 @@
             display: none !important;
         }
 
-        /* FULL SCREEN SLIDER */
+        /* FULL SCREEN SLIDER - TANPA ARROW DAN COUNTER */
         .hero {
             position: relative;
             height: 100vh;
@@ -346,7 +346,7 @@
             height: 100%;
             width: 100%;
             position: relative;
-            touch-action: pan-y pinch-zoom;
+            touch-action: pan-y pinch-zoom; /* Penting: mengizinkan scroll vertikal */
         }
 
         .slider-wrapper {
@@ -486,46 +486,17 @@
             }
         }
 
-        /* SLIDER CONTROLS */
+        /* SLIDER CONTROLS - HANYA PROGRESS BAR YANG TERSISA */
         .slider-controls {
             position: absolute;
             bottom: 50px;
             left: 8%;
             right: 8%;
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* pusatkan progress */
             align-items: center;
             z-index: 100;
             pointer-events: none;
-        }
-
-        .slider-arrows {
-            display: flex;
-            gap: 20px;
-            pointer-events: auto;
-        }
-
-        .slider-arrow {
-            width: 60px;
-            height: 60px;
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: #ffffff;
-            font-size: 22px;
-        }
-
-        .slider-arrow:hover {
-            background: #ffffff;
-            color: #000000;
-            border-color: #ffffff;
-            transform: scale(1.1);
         }
 
         .slider-progress {
@@ -562,14 +533,6 @@
         @keyframes progress {
             from { width: 0; }
             to { width: 100%; }
-        }
-
-        .slider-counter {
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            pointer-events: auto;
         }
 
         /* SECTION TITLE */
@@ -932,44 +895,6 @@
             opacity: 1;
         }
 
-        /* slider arrows */
-        .insta-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 52px;
-            height: 52px;
-            background: #ffffff;
-            border: 1px solid #eaeaea;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: #111111;
-            font-size: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            z-index: 10;
-            opacity: 0.9;
-        }
-
-        .insta-arrow:hover {
-            background: #000000;
-            color: #ffffff;
-            border-color: #000000;
-            transform: translateY(-50%) scale(1.1);
-            opacity: 1;
-        }
-
-        .insta-arrow.left {
-            left: 0;
-        }
-
-        .insta-arrow.right {
-            right: 0;
-        }
-
         /* dots */
         .insta-dots {
             display: flex;
@@ -1285,22 +1210,17 @@
                 font-size: 14px;
             }
             
+            /* Slider controls hanya progress bar */
             .slider-controls {
                 bottom: 30px;
                 left: 5%;
                 right: 5%;
-                flex-wrap: wrap;
-                gap: 20px;
-            }
-            
-            .slider-arrow {
-                width: 44px;
-                height: 44px;
-                font-size: 18px;
+                justify-content: center;
             }
             
             .progress-item {
                 width: 60px;
+                height: 3px;
             }
             
             /* STORY CONTAINER DI MOBILE - TURUN KE BAWAH */
@@ -1619,7 +1539,7 @@
         <i class="fas fa-times" onclick="clearSearch()"></i>
     </div>
 
-    <!-- FULL SCREEN SLIDER WITH DRAG -->
+    <!-- FULL SCREEN SLIDER WITH DRAG - TANPA ARROW & COUNTER -->
     <section class="hero" id="heroSection">
         <div class="slider-container" id="sliderContainer">
             <div class="slider-wrapper" id="sliderWrapper">
@@ -1655,25 +1575,12 @@
             </div>
         </div>
 
-        <!-- SLIDER CONTROLS -->
+        <!-- SLIDER CONTROLS - HANYA PROGRESS BAR -->
         <div class="slider-controls">
-            <div class="slider-arrows">
-                <div class="slider-arrow" onclick="prevSlide()">
-                    <i class="fas fa-chevron-left"></i>
-                </div>
-                <div class="slider-arrow" onclick="nextSlide()">
-                    <i class="fas fa-chevron-right"></i>
-                </div>
-            </div>
-            
             <div class="slider-progress">
                 <div class="progress-item active" onclick="goToSlide(0)"></div>
                 <div class="progress-item" onclick="goToSlide(1)"></div>
                 <div class="progress-item" onclick="goToSlide(2)"></div>
-            </div>
-
-            <div class="slider-counter">
-                <span id="currentSlide">01</span> / <span id="totalSlides">03</span>
             </div>
         </div>
     </section>
@@ -2080,18 +1987,16 @@
         const sliderWrapper = document.getElementById('sliderWrapper');
         const sliderItems = document.querySelectorAll('.slider-item');
         const progressItems = document.querySelectorAll('.progress-item');
-        const currentSlideSpan = document.getElementById('currentSlide');
-        const totalSlidesSpan = document.getElementById('totalSlides');
         
         let currentIndex = 0;
         let startX = 0;
-        let currentX = 0;
+        let startY = 0; // Menambahkan tracking untuk sumbu Y
         let isDragging = false;
+        let isHorizontalDrag = false; // Menandai apakah ini drag horizontal
         let slideWidth = 0;
         let autoSlideInterval;
 
         const totalSlides = sliderItems.length;
-        totalSlidesSpan.textContent = totalSlides < 10 ? '0' + totalSlides : totalSlides;
 
         function updateSlide(index) {
             if (index < 0) index = totalSlides - 1;
@@ -2116,8 +2021,6 @@
                     item.classList.remove('active');
                 }
             });
-            
-            currentSlideSpan.textContent = (currentIndex + 1) < 10 ? '0' + (currentIndex + 1) : (currentIndex + 1);
         }
 
         function nextSlide() {
@@ -2150,10 +2053,12 @@
             startAutoSlide();
         }
 
+        // Event handlers yang sudah diperbaiki
         sliderWrapper.addEventListener('mousedown', (e) => {
             isDragging = true;
-            startX = e.pageX - sliderWrapper.offsetLeft;
-            currentX = sliderWrapper.offsetLeft;
+            startX = e.pageX;
+            startY = e.pageY;
+            isHorizontalDrag = false;
             sliderWrapper.style.transition = 'none';
             sliderWrapper.style.cursor = 'grabbing';
             clearInterval(autoSlideInterval);
@@ -2161,24 +2066,34 @@
 
         sliderWrapper.addEventListener('mousemove', (e) => {
             if (!isDragging) return;
-            e.preventDefault();
             
-            const x = e.pageX - sliderWrapper.offsetLeft;
-            const walk = (x - startX) * 2;
+            const currentX = e.pageX;
+            const currentY = e.pageY;
+            const diffX = Math.abs(currentX - startX);
+            const diffY = Math.abs(currentY - startY);
             
-            if (Math.abs(walk) > slideWidth * 0.2) {
-                if (walk > 0 && currentIndex > 0) {
-                    currentIndex--;
-                    updateSlide(currentIndex);
+            // Jika pergerakan horizontal lebih dominan, tangani sebagai drag slider
+            if (diffX > diffY && diffX > 20) {
+                e.preventDefault();
+                isHorizontalDrag = true;
+                
+                const walk = (currentX - startX) * 2;
+                const slideWidth = sliderWrapper.clientWidth;
+                
+                if (Math.abs(walk) > slideWidth * 0.15) {
+                    if (walk > 0 && currentIndex > 0) {
+                        currentIndex--;
+                        updateSlide(currentIndex);
+                        isDragging = false;
+                        sliderWrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    } else if (walk < 0 && currentIndex < totalSlides - 1) {
+                        currentIndex++;
+                        updateSlide(currentIndex);
+                        isDragging = false;
+                        sliderWrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    }
                     isDragging = false;
-                    sliderWrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-                } else if (walk < 0 && currentIndex < totalSlides - 1) {
-                    currentIndex++;
-                    updateSlide(currentIndex);
-                    isDragging = false;
-                    sliderWrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
                 }
-                isDragging = false;
             }
         });
 
@@ -2186,6 +2101,7 @@
             if (isDragging) {
                 isDragging = false;
                 sliderWrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                sliderWrapper.style.cursor = 'grab';
                 updateSlide(currentIndex);
                 startAutoSlide();
             }
@@ -2195,39 +2111,54 @@
             if (isDragging) {
                 isDragging = false;
                 sliderWrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                sliderWrapper.style.cursor = 'grab';
                 updateSlide(currentIndex);
                 startAutoSlide();
             }
         });
 
+        // Touch events untuk mobile
         sliderWrapper.addEventListener('touchstart', (e) => {
             isDragging = true;
-            startX = e.touches[0].pageX - sliderWrapper.offsetLeft;
+            startX = e.touches[0].pageX;
+            startY = e.touches[0].pageY;
+            isHorizontalDrag = false;
             sliderWrapper.style.transition = 'none';
             clearInterval(autoSlideInterval);
         });
 
         sliderWrapper.addEventListener('touchmove', (e) => {
             if (!isDragging) return;
-            e.preventDefault();
             
-            const x = e.touches[0].pageX - sliderWrapper.offsetLeft;
-            const walk = (x - startX) * 2;
+            const currentX = e.touches[0].pageX;
+            const currentY = e.touches[0].pageY;
+            const diffX = Math.abs(currentX - startX);
+            const diffY = Math.abs(currentY - startY);
             
-            if (Math.abs(walk) > slideWidth * 0.15) {
-                if (walk > 0 && currentIndex > 0) {
-                    currentIndex--;
-                    updateSlide(currentIndex);
+            // Jika pergerakan horizontal lebih dominan, cegah scroll vertikal
+            if (diffX > diffY && diffX > 15) {
+                e.preventDefault(); // Mencegah scroll hanya ketika drag horizontal
+                isHorizontalDrag = true;
+                
+                const walk = (currentX - startX) * 2;
+                const slideWidth = sliderWrapper.clientWidth;
+                
+                if (Math.abs(walk) > slideWidth * 0.1) {
+                    if (walk > 0 && currentIndex > 0) {
+                        currentIndex--;
+                        updateSlide(currentIndex);
+                        isDragging = false;
+                        sliderWrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    } else if (walk < 0 && currentIndex < totalSlides - 1) {
+                        currentIndex++;
+                        updateSlide(currentIndex);
+                        isDragging = false;
+                        sliderWrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    }
                     isDragging = false;
-                    sliderWrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-                } else if (walk < 0 && currentIndex < totalSlides - 1) {
-                    currentIndex++;
-                    updateSlide(currentIndex);
-                    isDragging = false;
-                    sliderWrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
                 }
-                isDragging = false;
             }
+            // Jika pergerakan vertikal lebih dominan, biarkan scroll terjadi (tidak perlu e.preventDefault)
         });
 
         sliderWrapper.addEventListener('touchend', () => {
